@@ -8,8 +8,8 @@ def fetch_data():
     '''
         this function can fetch the dataset file
     '''
-    path = "https://raw.githubusercontent.com/EKU-Summer-2021/intelligent_system_data/main/Intelligent%20System" \
-           "%20Data/TSP/10.csv "
+    path = "https://raw.githubusercontent.com/EKU-Summer-2021/intelligent_system_data/" \
+           "main/Intelligent%20System%20Data/TSP/10.csv"
     urllib.request.urlretrieve(path, "10.csv")
 
 def load_data():
