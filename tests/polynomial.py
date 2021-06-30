@@ -17,5 +17,3 @@ class PolynomialTets(unittest.TestCase):
         # then
         self.assertEqual(EXPECTED, ACTUAL)
 
-    # def test_fails(self):
-    #     self.assertEqual(True, False)
