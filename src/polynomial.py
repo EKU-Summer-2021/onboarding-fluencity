@@ -2,7 +2,7 @@
 Polynomial module with a simple Polynomial example class.
 '''
 import numpy as np
-
+import pandas as pd
 class Polynomial():
     '''
     Polynomial object which can be evaluated.
