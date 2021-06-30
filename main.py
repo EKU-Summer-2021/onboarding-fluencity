@@ -7,4 +7,3 @@ if __name__ == '__main__':
     index=np.arange(len(dataset))
     np.random.shuffle(index)
     cost=tsp.cost(dataset,index)
-    print(type(cost))

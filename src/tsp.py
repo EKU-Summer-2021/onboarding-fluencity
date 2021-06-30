@@ -4,7 +4,6 @@ Pylint will check code in the src directory only!
 '''
 import math
 
-
 def distance(x_1,y_1, x_2 , y_2 ):
     '''
         this function calculate the distance
@@ -17,7 +16,9 @@ def cost(dataset,index):
     '''
     cost_total = 0
     for idx in index:
-        cost_total = cost_total + distance(dataset["x"][idx], dataset["y"][idx], \
+        if idx==0:
+            continue
+        cost_total = cost_total + distance(dataset["x"][idx-1], dataset["y"][idx-1], \
                                dataset["x"][idx], dataset["y"][idx])
     cost = cost_total + distance \
         (dataset["x"][index[0]], \
