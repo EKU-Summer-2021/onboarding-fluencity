@@ -10,3 +10,4 @@ if __name__ == '__main__':
     print(polynom.evaluate(3))
     print(polynom.roots())
     print(dataset.describe())
+    print(type(dataset))
