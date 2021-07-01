@@ -37,7 +37,7 @@ class TSPSolver:
         '''
         return self.dataset
 
-def distance(self,x_1,y_1, x_2 , y_2 ):
+def distance(x_1,y_1, x_2 , y_2 ):
     '''
         this function calculate the distance
     '''
