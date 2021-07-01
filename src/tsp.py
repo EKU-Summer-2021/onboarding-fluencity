@@ -5,13 +5,16 @@ Pylint will check code in the src directory only!
 import math
 
 class TSPSolver:
+    '''
+        this class is for TSP problem
+    '''
     def __init__(self,dataset):
         '''
             this function initialize the instance
         '''
         self.dataset=dataset
 
-    def distance(slef,x_1,y_1, x_2 , y_2 ):
+    def distance(self,x_1,y_1, x_2 , y_2 ):
         '''
             this function calculate the distance
         '''
@@ -25,11 +28,13 @@ class TSPSolver:
         for idx in index:
             if idx == 0:
                 continue
-            cost_total = cost_total + self.distance(self.dataset["x"][idx - 1], self.dataset["y"][idx - 1], \
+            cost_total = cost_total + self.distance(self.dataset["x"][idx - 1], \
+                                                    self.dataset["y"][idx - 1], \
                                                self.dataset["x"][idx], self.dataset["y"][idx])
         cost = cost_total + self.distance \
             (self.dataset["x"][index[0]], \
-             self.dataset["y"][index[0]], self.dataset["x"][index[-1]], self.dataset["y"][index[-1]])
+             self.dataset["y"][index[0]], \
+             self.dataset["x"][index[-1]], self.dataset["y"][index[-1]])
         return cost
 
     def solve(self):
