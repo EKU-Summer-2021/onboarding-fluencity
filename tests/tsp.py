@@ -1,7 +1,5 @@
 import unittest
 
-import pandas
-
 from src import csv_read
 
 from src import tsp
@@ -10,9 +8,8 @@ import numpy as np
 
 class TspTest(unittest.TestCase):
 
-    def test_return_should_be_dataset(self):
+    def test_cost_function(self):
         dataset = csv_read.load_data()
-        index = np.arange(len(dataset))
-        np.random.shuffle(index)
+        index = np.array([1,6,7,8,3,4,5,2,9,0])
         cost = tsp.cost(dataset, index)
-        self.assertIsInstance(cost,float)
+        self.assertEqual(cost,436.5884178216676)

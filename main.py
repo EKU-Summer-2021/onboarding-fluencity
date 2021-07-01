@@ -4,6 +4,5 @@ import numpy as np
 
 if __name__ == '__main__':
     dataset = csv_read.load_data()
-    index=np.arange(len(dataset))
-    np.random.shuffle(index)
+    index=np.array([1,6,7,8,3,4,5,2,9,0])
     cost=tsp.cost(dataset,index)
