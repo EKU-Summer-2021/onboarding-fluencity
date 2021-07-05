@@ -2,7 +2,7 @@ import unittest
 
 from src import csv_read
 
-from src import TSP_problem,PSO_solver
+from src import TSP_problem,Solver
 
 import numpy as np
 
@@ -18,7 +18,7 @@ class TspTest(unittest.TestCase):
     def test_solve_function(self):
         dataset = csv_read.load_data()
         problem = TSP_problem(dataset)
-        psoSolver = PSO_solver(problem)
+        psoSolver = Solver(problem)
         path,cost=psoSolver.solve(10, 100)
         self.assertIsInstance(cost,float)
         self.assertIsInstance(path,np.ndarray)

@@ -4,7 +4,7 @@
 import numpy as np
 from src import Data
 
-class PSO_solver:
+class Solver:
     '''
         this class is for TSP problem
     '''
