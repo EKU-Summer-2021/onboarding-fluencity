@@ -21,4 +21,3 @@ class StoredData:
             this function return cost
         '''
         return self.path
-
