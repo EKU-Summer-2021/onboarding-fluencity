@@ -14,3 +14,10 @@ class TspTest(unittest.TestCase):
         tspSolver = tsp.TSPSolver(dataset)
         cost = tspSolver.cost(index)
         self.assertEqual(cost,436.5884178216676)
+
+    def test_solve_function(self):
+        dataset = csv_read.load_data()
+        tspSolver = tsp.TSPSolver(dataset)
+        path,cost=tspSolver.solve(10, 100)
+        self.assertIsInstance(cost,float)
+        self.assertIsInstance(path,np.ndarray)
