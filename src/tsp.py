@@ -16,11 +16,17 @@ class Information:
         '''
         self.path = []
         self.cost = 500000
-    def to_do(self):
+    def get_cost(self):
         '''
             this function return cost
         '''
         return self.cost
+    def get_path(self):
+        '''
+            this function return cost
+        '''
+        return self.path
+
 
 class TSPSolver:
     '''
