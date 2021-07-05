@@ -1,4 +1,7 @@
-class Information:
+'''
+   this file contains information
+'''
+class Data:
     '''
         this class store information
     '''
@@ -19,5 +22,3 @@ class Information:
         '''
         return self.path
 
-def max(a):
-    return a

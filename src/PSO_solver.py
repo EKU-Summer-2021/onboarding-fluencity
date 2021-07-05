@@ -1,7 +1,10 @@
-from src import Information
+'''
+   this file contains function solver
+'''
 import numpy as np
+from src import Data
 
-class PSOSolver:
+class PSO_solver:
     '''
         this class is for TSP problem
     '''
@@ -9,7 +12,7 @@ class PSOSolver:
         '''
             this function initialize the instance
         '''
-        self.best = Information()
+        self.best = Data()
         self.problem=problem
 
     def solve(self,paths,epoches):
@@ -24,7 +27,7 @@ class PSOSolver:
         velocity_list=[[ np.random.randint(0,len(self.problem.dataset),2),\
                          np.random.randint(0,len(self.problem.dataset),2)] for
                        _ in range(paths)]
-        information_list=[Information() for
+        information_list=[Data() for
                           _ in range(paths)]
         for _ in range(epoches):
             for index in range(len(path_list)):
@@ -42,7 +45,11 @@ class PSOSolver:
                 velocity_list[index][1]=calculate_velocity(path_list[index],\
                                                            information_list[index].path)
         return self.best.path,self.best.cost
-
+    def get_problem(self):
+        '''
+            this function return the problem
+        '''
+        return self.problem
 
 def swap(path_list, velocity):
     '''

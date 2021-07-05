@@ -1,6 +1,9 @@
+'''
+   this file contains function probllem and cost
+'''
 import math
 
-class TSPProblem:
+class TSP_problem:
     '''
         this class is for TSP problem
     '''
@@ -26,6 +29,11 @@ class TSPProblem:
              self.dataset["y"][index[0]], \
              self.dataset["x"][index[-1]], self.dataset["y"][index[-1]])
         return cost
+    def get_dataset(self):
+        '''
+            this function return dataset
+        '''
+        return self.dataset
 
 def distance(x_1,y_1, x_2 , y_2 ):
     '''
