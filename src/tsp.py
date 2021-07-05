@@ -16,7 +16,11 @@ class Information:
         '''
         self.path = []
         self.cost = 500000
-
+    def to_do(self):
+        '''
+            this function return cost
+        '''
+        return self.cost
 
 class TSPSolver:
     '''
@@ -82,14 +86,14 @@ def distance(x_1,y_1, x_2 , y_2 ):
     '''
     return math.sqrt((x_1 - x_2) ** 2 + (y_1 - y_2) ** 2)
 
-def swap(list,velocity):
+def swap(path_list, velocity):
     '''
         this function apply swap
     '''
-    temp=list[velocity[0]]
-    list[velocity[0]]=list[velocity[1]]
-    list[velocity[1]]=temp
-    return list
+    temp=path_list[velocity[0]]
+    path_list[velocity[0]]=path_list[velocity[1]]
+    path_list[velocity[1]]=temp
+    return path_list
 
 def calculate_velocity(now,target):
     '''
@@ -106,6 +110,3 @@ def calculate_velocity(now,target):
         if index_2!= 0:
             return np.array([index_1,index_2])
     return np.array([0,0])
-
-
-
