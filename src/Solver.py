@@ -2,7 +2,7 @@
    this file contains function solver
 '''
 import numpy as np
-from src import Data
+from src import StoredData
 
 class Solver:
     '''
@@ -12,7 +12,7 @@ class Solver:
         '''
             this function initialize the instance
         '''
-        self.best = Data()
+        self.best = StoredData()
         self.problem=problem
 
     def solve(self,paths,epoches):
@@ -27,7 +27,7 @@ class Solver:
         velocity_list=[[ np.random.randint(0,len(self.problem.dataset),2),\
                          np.random.randint(0,len(self.problem.dataset),2)] for
                        _ in range(paths)]
-        information_list=[Data() for
+        information_list=[StoredData() for
                           _ in range(paths)]
         for _ in range(epoches):
             for index in range(len(path_list)):

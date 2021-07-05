@@ -3,7 +3,7 @@
 '''
 import math
 
-class TSP_problem:
+class Problem:
     '''
         this class is for TSP problem
     '''

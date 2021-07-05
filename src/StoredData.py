@@ -1,7 +1,7 @@
 '''
    this file contains information
 '''
-class Data:
+class StoredData:
     '''
         this class store information
     '''
