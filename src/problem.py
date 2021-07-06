@@ -13,21 +13,21 @@ class Problem:
         '''
         self.dataset = dataset
 
-    def cost(self, index):
+    def cost(self, path):
         '''
             this function calculate the cost
         '''
         cost_total = 0
-        for idx in index:
+        for idx in path:
             if idx == 0:
                 continue
             cost_total = cost_total + distance(self.dataset["x"][idx - 1], \
                                                self.dataset["y"][idx - 1], \
                                                self.dataset["x"][idx], self.dataset["y"][idx])
         cost = cost_total + distance \
-            (self.dataset["x"][index[0]], \
-             self.dataset["y"][index[0]], \
-             self.dataset["x"][index[-1]], self.dataset["y"][index[-1]])
+            (self.dataset["x"][path[0]], \
+             self.dataset["y"][path[0]], \
+             self.dataset["x"][path[-1]], self.dataset["y"][path[-1]])
         return cost
     def get_dataset(self):
         '''
