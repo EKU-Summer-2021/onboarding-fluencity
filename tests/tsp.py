@@ -22,4 +22,4 @@ class TspTest(unittest.TestCase):
         psoSolver = Solver(problem)
         path,cost=psoSolver.solve(10, 100)
         self.assertEqual(cost,417.2004929923965)
-        self.assertEqual(path,[8 ,3 ,6 ,9 ,4 ,5 ,0, 7 ,1 ,2])
+        np.allclose(path,np.array([8 ,3 ,6 ,9 ,4 ,5 ,0, 7 ,1 ,2]))
