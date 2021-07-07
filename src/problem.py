@@ -18,12 +18,12 @@ class Problem:
             this function calculate the cost
         '''
         cost_total = 0
-        for idx in path:
-            if idx == 0:
+        for index in range(len(path)):
+            if index == 0:
                 continue
-            cost_total = cost_total + distance(self.dataset["x"][idx - 1], \
-                                               self.dataset["y"][idx - 1], \
-                                               self.dataset["x"][idx], self.dataset["y"][idx])
+            cost_total = cost_total + distance(self.dataset["x"][path[index - 1]], \
+                                               self.dataset["y"][path[index - 1]], \
+                                               self.dataset["x"][path[index]], self.dataset["y"][path[index]])
         cost = cost_total + distance \
             (self.dataset["x"][path[0]], \
              self.dataset["y"][path[0]], \
