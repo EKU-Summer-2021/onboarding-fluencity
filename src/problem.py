@@ -18,7 +18,7 @@ class Problem:
             this function calculate the cost
         '''
         cost_total = 0
-        for index in range(len(path)):
+        for index ,_ in enumerate(path):
             if index == 0:
                 continue
             cost_total = cost_total + distance(self.dataset["x"][path[index - 1]], \

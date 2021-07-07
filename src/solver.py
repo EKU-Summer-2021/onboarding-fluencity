@@ -22,7 +22,7 @@ class Solver:
         path_list=[np.linspace(0,len(self.problem.dataset)-1,\
                 len(self.problem.dataset)).astype(int) for
                    _ in range(paths)]
-        for index in range(len(path_list)):
+        for index , _ in enumerate(path_list):
             np.random.shuffle(path_list[index])
         velocity_list=[[ np.random.randint(0,len(self.problem.dataset),2),\
                          np.random.randint(0,len(self.problem.dataset),2)] for
@@ -30,7 +30,7 @@ class Solver:
         information_list=[StoredData() for
                           _ in range(paths)]
         for _ in range(epoches):
-            for index in range(len(path_list)):
+            for index ,_ in enumerate(path_list):
                 for velocity in velocity_list[index]:
                     path_list[index]=swap(path_list[index],velocity)
                     if information_list[index].cost>self.problem.cost(path_list[index]):
@@ -40,7 +40,7 @@ class Solver:
                         self.best.cost=information_list[index].cost
                         self.best.path=information_list[index].path
                     break
-            for index in range(len(path_list)):
+            for index,_ in enumerate(path_list):
                 velocity_list[index][0]=calculate_velocity(path_list[index],self.best.path)
                 velocity_list[index][1]=calculate_velocity(path_list[index],\
                                                            information_list[index].path)
