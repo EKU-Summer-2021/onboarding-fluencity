@@ -2,7 +2,9 @@
    this file contains function solver
 '''
 import numpy as np
+
 from src import StoredData
+
 
 class Solver:
     '''
@@ -19,6 +21,7 @@ class Solver:
         '''
             this function solve the problem
         '''
+        solution_list=[]
         path_list=[np.linspace(0,len(self.problem.dataset)-1,\
                 len(self.problem.dataset)).astype(int) for
                    _ in range(paths)]
@@ -33,6 +36,8 @@ class Solver:
             for index ,_ in enumerate(path_list):
                 for velocity in velocity_list[index]:
                     path_list[index]=swap(path_list[index],velocity)
+                    solution_list.append(StoredData(path_list[index],\
+                                                    self.problem.cost(path_list[index])))
                     if information_list[index].cost>self.problem.cost(path_list[index]):
                         information_list[index].cost=self.problem.cost(path_list[index])
                         information_list[index].path=path_list[index]
@@ -44,7 +49,15 @@ class Solver:
                 velocity_list[index][0]=calculate_velocity(path_list[index],self.best.path)
                 velocity_list[index][1]=calculate_velocity(path_list[index],\
                                                            information_list[index].path)
-        return self.best.path,self.best.cost
+        length=len(solution_list)
+        for index,_ in enumerate(solution_list):
+            for idx in range(index+1,length):
+                if solution_list[index].cost>=solution_list[idx].cost:
+                    temp=solution_list[index]
+                    solution_list[index]=solution_list[idx]
+                    solution_list[idx]=temp
+
+        return self.best.path,self.best.cost,solution_list
     def get_problem(self):
         '''
             this function return the problem
