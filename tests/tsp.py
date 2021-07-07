@@ -13,7 +13,7 @@ class TspTest(unittest.TestCase):
         index = np.array([1,6,7,8,3,4,5,2,9,0])
         problem = Problem(dataset)
         cost = problem.cost(index)
-        self.assertEqual(cost,436.5884178216676)
+        self.assertEqual(cost,467.00165757454954)
 
     def test_solve_function(self):
         np.random.seed(1)
@@ -21,5 +21,5 @@ class TspTest(unittest.TestCase):
         problem = Problem(dataset)
         psoSolver = Solver(problem)
         path,cost=psoSolver.solve(10, 100)
-        self.assertEqual(cost,417.2004929923965)
-        np.allclose(path,np.array([8 ,3 ,6 ,9 ,4 ,5 ,0, 7 ,1 ,2]))
+        self.assertEqual(cost,367.0386651886469)
+        np.allclose(path,np.array([8 ,4 ,5 ,0 ,6 ,1 ,3 ,7 ,2 ,9]))
