@@ -1,8 +1,12 @@
 '''
    this file contains function solver
 '''
+import configparser
+import os
 import numpy as np
+import pandas as pd
 from src import StoredData
+
 
 class Solver:
     '''
@@ -14,25 +18,33 @@ class Solver:
         '''
         self.best = StoredData()
         self.problem=problem
+        config = configparser.ConfigParser()
+        config.read(os.path.join(os.path.dirname(__file__), '../config', 'solver.conf'))
+        self.paths = int(config['Parameters']['paths'])
+        self.epochs = int(config['Parameters']['epochs'])
+        self.restarts=int(config['Parameters']['restarts'])
 
-    def solve(self,paths,epoches):
+    def solve(self):
         '''
             this function solve the problem
         '''
+        solution_list=[]
         path_list=[np.linspace(0,len(self.problem.dataset)-1,\
                 len(self.problem.dataset)).astype(int) for
-                   _ in range(paths)]
+                   _ in range(self.paths)]
         for index , _ in enumerate(path_list):
             np.random.shuffle(path_list[index])
         velocity_list=[[ np.random.randint(0,len(self.problem.dataset),2),\
                          np.random.randint(0,len(self.problem.dataset),2)] for
-                       _ in range(paths)]
+                       _ in range(self.paths)]
         information_list=[StoredData() for
-                          _ in range(paths)]
-        for _ in range(epoches):
+                          _ in range(self.paths)]
+        for _ in range(self.epochs):
             for index ,_ in enumerate(path_list):
                 for velocity in velocity_list[index]:
                     path_list[index]=swap(path_list[index],velocity)
+                    solution_list.append(StoredData(path_list[index],\
+                                                    self.problem.cost(path_list[index])))
                     if information_list[index].cost>self.problem.cost(path_list[index]):
                         information_list[index].cost=self.problem.cost(path_list[index])
                         information_list[index].path=path_list[index]
@@ -44,12 +56,34 @@ class Solver:
                 velocity_list[index][0]=calculate_velocity(path_list[index],self.best.path)
                 velocity_list[index][1]=calculate_velocity(path_list[index],\
                                                            information_list[index].path)
-        return self.best.path,self.best.cost
+        length=len(solution_list)
+        for index,_ in enumerate(solution_list):
+            for idx in range(index+1,length):
+                if solution_list[index].cost>=solution_list[idx].cost:
+                    temp=solution_list[index]
+                    solution_list[index]=solution_list[idx]
+                    solution_list[idx]=temp
+
+        return self.best.path,self.best.cost,solution_list
     def get_problem(self):
         '''
             this function return the problem
         '''
         return self.problem
+    def solve_restart(self):
+        '''
+           restart the train
+        '''
+        cost_list=[]
+        path_list=[]
+        for _ in range(self.restarts):
+            path,cost,_=self.solve()
+            cost_list.append(cost)
+            path_list.append(path)
+        save = pd.DataFrame({'cost': cost_list,
+                             'path': path_list})
+        save.to_csv('result.csv', index=False)
+        print(f"the cost {cost_list},the path {path_list}")
 
 def swap(path_list, velocity):
     '''

@@ -20,6 +20,6 @@ class TspTest(unittest.TestCase):
         dataset = csv_read.load_data()
         problem = Problem(dataset)
         psoSolver = Solver(problem)
-        path,cost=psoSolver.solve(10, 100)
-        self.assertEqual(cost,367.0386651886469)
+        path,cost,solution_list=psoSolver.solve()
+        self.assertEqual(cost,324.04770729566593)
         np.allclose(path,np.array([8 ,4 ,5 ,0 ,6 ,1 ,3 ,7 ,2 ,9]))
