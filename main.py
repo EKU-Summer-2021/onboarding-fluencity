@@ -1,7 +1,9 @@
-from src import csv_read
-from src import tsp
+from src import Problem,Solver,csv_read
 import numpy as np
 
 if __name__ == '__main__':
     dataset = csv_read.load_data()
-    index=np.array([1,6,7,8,3,4,5,2,9,0])
+    problem = Problem(dataset)
+    psoSolver=Solver(problem)
+    path,cost=psoSolver.solve(10,100)
+    print(f"cost is {cost} ,path is {path}")
