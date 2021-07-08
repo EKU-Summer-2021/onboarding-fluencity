@@ -1,8 +1,9 @@
 '''
    this file contains function solver
 '''
+import configparser
+import os
 import numpy as np
-
 from src import StoredData
 
 
@@ -17,10 +18,15 @@ class Solver:
         self.best = StoredData()
         self.problem=problem
 
-    def solve(self,paths,epoches):
+    def solve(self):
         '''
             this function solve the problem
         '''
+        config=configparser.ConfigParser()
+        config.read(os.path.join(os.path.dirname(__file__),'../config','solver.conf'))
+        paths=int(config['Parameters']['paths'])
+
+        epoches=int(config['Parameters']['epochs'])
         solution_list=[]
         path_list=[np.linspace(0,len(self.problem.dataset)-1,\
                 len(self.problem.dataset)).astype(int) for
