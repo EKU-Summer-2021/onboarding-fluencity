@@ -6,10 +6,5 @@ if __name__ == '__main__':
     problem = Problem(dataset)
     psoSolver=Solver(problem)
     path,cost,solution_list=psoSolver.solve()
-    save=pd.DataFrame({'cost':[cost],
-                 'path':[path]})
-    save.to_csv('result.csv', index=False)
     print(f"best cost is {cost} ,best path is {path}")
-    print("10 best solution")
-    for solution in solution_list[:10]:
-        print(f"cost:{solution.cost} and path is {solution.path}")
+    psoSolver.solve_restart()
