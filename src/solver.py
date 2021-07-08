@@ -71,10 +71,13 @@ class Solver:
         '''
         return self.problem
     def solve_restart(self):
+        '''
+           restart the train
+        '''
         cost_list=[]
         path_list=[]
-        for restart in range(self.restarts):
-            path,cost,solution_list=self.solve()
+        for _ in range(self.restarts):
+            path,cost,_=self.solve()
             cost_list.append(cost)
             path_list.append(path)
         save = pd.DataFrame({'cost': cost_list,
